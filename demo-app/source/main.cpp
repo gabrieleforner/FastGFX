@@ -2,9 +2,6 @@
 #include <core/AppModel.h>
 #include <test_scenes/SceneMain.h>
 
-namespace GraphicsEngine {
-
-
 int main(int argc, char** argv)
 {
 	AppConfig config;
@@ -16,5 +13,4 @@ int main(int argc, char** argv)
 	config.windowTitle = "[FASTGFX] Gioco Godereccio v1.0-dev";
 
 	ApplicationModel().Run(config);
-}
 }
