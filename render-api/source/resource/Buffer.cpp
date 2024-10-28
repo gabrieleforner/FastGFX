@@ -20,7 +20,7 @@ uint32_t findMemType(uint32_t typeFilter, VkPhysicalDevice pDevice, VkMemoryProp
 namespace FastGFX::Resource
 {
 
-    void VertexBuffer::Create(Core::Renderer render, std::vector<Vertex> bufferData)
+    void VertexBuffer::Create(Core::Renderer& render, const std::vector<Vertex>& bufferData)
     {
         VkBufferCreateInfo buffer_createInfo{};
         buffer_createInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
@@ -36,21 +36,22 @@ namespace FastGFX::Resource
 
         VkMemoryAllocateInfo allocateInfo{};
         allocateInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
-        allocateInfo.pNext = 0;
+        allocateInfo.pNext = nullptr;
         allocateInfo.allocationSize = bufferMemoryRequirements.size;
         allocateInfo.memoryTypeIndex = findMemType(bufferMemoryRequirements.memoryTypeBits, render.enginePhysicalDevice, VK_MEMORY_PROPERTY_HOST_COHERENT_BIT | VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT);
         vkAllocateMemory(render.engineDevice, &allocateInfo, nullptr, &this->vertexBufferMemory);
-        vkBindBufferMemory(render.engineDevice, this->vertexBufferObject, this->vertexBufferMemory, {0});
+        constexpr VkDeviceSize offset = 0;
+        vkBindBufferMemory(render.engineDevice, this->vertexBufferObject, this->vertexBufferMemory, offset);
 
     }
 
-    void VertexBuffer::Bind(Core::Renderer render)
+    void VertexBuffer::Bind(const Core::Renderer& render)
     {
         VkDeviceSize offset = { 0 };
         vkCmdBindVertexBuffers(render.commandBuffer, 0, 1, &this->vertexBufferObject, &offset);
     }
 
-    void VertexBuffer::Destroy(Core::Renderer renderer)
+    void VertexBuffer::Destroy(Core::Renderer& renderer)
     {
         vkDestroyBuffer(renderer.engineDevice, this->vertexBufferObject, nullptr);
         vkFreeMemory(renderer.engineDevice, this->vertexBufferMemory, nullptr);

@@ -1,10 +1,15 @@
 #pragma once
 
-#include <utility>
+#include <vulkan/vulkan.h>
 #include <vector>
 #include <glm/glm.hpp>
-
 #include "core/Renderer.h"
+
+namespace FastGFX {
+    namespace Core {
+        class Renderer;
+    }
+}
 
 namespace  FastGFX::Resource
 {
@@ -22,8 +27,8 @@ namespace  FastGFX::Resource
 
     public:
         // Fluid Methods
-        void Create(Core::Renderer render, std::vector<Vertex> bufferData);
-        void Bind(Core::Renderer render);
-        void Destroy(Core::Renderer renderer);
+        void Create(Core::Renderer& render, const std::vector<Vertex>& bufferData);
+        void Bind(const Core::Renderer& render);
+        void Destroy(Core::Renderer& renderer);
     };
 }

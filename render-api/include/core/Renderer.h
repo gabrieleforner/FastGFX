@@ -1,8 +1,17 @@
 #pragma once
 #define GLFW_INCLUDE_VULKAN
-
 #include <VkBootstrap.h>
 #include <GLFW/glfw3.h>
+
+#include "resource/Buffer.h"
+
+
+namespace FastGFX {
+    namespace Resource {
+        class VertexBuffer;
+    }
+}
+
 
 namespace FastGFX::Core
 {
@@ -23,7 +32,6 @@ namespace FastGFX::Core
         VkSemaphore imageAvailableSemaphore;
         VkSemaphore renderFinishedSemaphore;
         VkFence inFlightFence;
-    public:
         VkInstance engineInstance;
         VkDebugUtilsMessengerEXT engineDebugMessenger;
         VkSurfaceKHR engineSurface;
@@ -35,6 +43,8 @@ namespace FastGFX::Core
         VkRenderPass engineRenderPass;
         VkClearValue clearColor = {};
         VkCommandBuffer commandBuffer;
+        friend Resource::VertexBuffer;
+    public:
 
         void create(GLFWwindow* window);
         void setFrame();
