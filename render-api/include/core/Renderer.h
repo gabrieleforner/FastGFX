@@ -6,8 +6,13 @@
 #include "resource/Buffer.h"
 
 
+namespace FastGFX::Core {
+    class ApplicationModel;
+}
+
 namespace FastGFX {
     namespace Resource {
+        class Shader;
         class VertexBuffer;
     }
 }
@@ -43,16 +48,16 @@ namespace FastGFX::Core
         VkRenderPass engineRenderPass;
         VkClearValue clearColor = {};
         VkCommandBuffer commandBuffer;
+        friend ApplicationModel;
         friend Resource::VertexBuffer;
-    public:
-
+        friend Resource::Shader;
         void create(GLFWwindow* window);
         void setFrame();
         void startDrawRecord();
         void endDrawRecord();
         void destroy();
 
-
+    public:
         void clearBG(float r, float g, float b, float a);
 
     };
