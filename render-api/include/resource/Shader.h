@@ -1,14 +1,8 @@
-//
-// Created by Gabri on 24/10/2024.
-//
-
 #ifndef SHADER_H
 #define SHADER_H
 
 #include <vulkan/vulkan.h>
 #include <util/ConsoleLog.h>
-#include <core/Renderer.h>
-
 #include "core/Renderer.h"
 
 namespace FastGFX::Resource
@@ -17,11 +11,15 @@ namespace FastGFX::Resource
     {
     private:
         Core::Renderer m_renderer;
+        VkShaderModule vertex, frag = VK_NULL_HANDLE;
+        VkPipeline renderPipelineObject = VK_NULL_HANDLE;
     public:
-        std::string fp_vertexShader;
-        std::string fp_fragmentShader;
+        Shader(Core::Renderer renderer);
+        Shader useInternalShader(std::string shader_name);
+        Shader useExternalVS(std::string glsl_file);
+        Shader useExternalFS(std::string glsl_file);
+        Shader Create(Core::Renderer renderer);
 
-        void Create(Core::Renderer renderer);
         void Bind();
         void Destroy();
     };
