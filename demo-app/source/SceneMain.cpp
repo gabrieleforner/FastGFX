@@ -22,7 +22,7 @@ void SceneMain::onSceneDraw(Renderer renderer) {
 }
 
 void SceneMain::onSceneExit(Renderer renderer) {
-
+	buffer.Destroy(renderer);
 }
 
 

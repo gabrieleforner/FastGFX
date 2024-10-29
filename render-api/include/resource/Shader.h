@@ -12,6 +12,7 @@ namespace FastGFX::Resource
     private:
         Core::Renderer m_renderer;
         VkShaderModule vertex, frag = VK_NULL_HANDLE;
+        VkPipelineLayout layout = VK_NULL_HANDLE;
         VkPipeline renderPipelineObject = VK_NULL_HANDLE;
     public:
         Shader(Core::Renderer renderer);
