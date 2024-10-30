@@ -40,7 +40,7 @@ std::vector<VkVertexInputAttributeDescription> setupVerticesAttrib()
     attributes[0].offset = offsetof(FastGFX::Resource::Vertex, position);
 
     attributes[1].binding = 0;
-    attributes[1].location = 0;
+    attributes[1].location = 1;
     attributes[1].format = VK_FORMAT_R32G32B32A32_SFLOAT;
     attributes[1].offset = offsetof(FastGFX::Resource::Vertex, rgbaColor);
 
@@ -132,9 +132,10 @@ namespace FastGFX::Resource {
         inputSetting.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
         inputSetting.pNext = 0;
 
+        std::vector<VkVertexInputAttributeDescription> attribdesc = setupVerticesAttrib();
         inputSetting.vertexAttributeDescriptionCount = 1;
         inputSetting.vertexBindingDescriptionCount = 1;
-        inputSetting.pVertexAttributeDescriptions = setupVerticesAttrib().data();
+        inputSetting.pVertexAttributeDescriptions = attribdesc.data();
         inputSetting.pVertexBindingDescriptions = &bind_desc;
 
         VkPipelineInputAssemblyStateCreateInfo iaConfiguration{};
@@ -166,7 +167,7 @@ namespace FastGFX::Resource {
         VkPipelineRasterizationStateCreateInfo raster{};
         raster.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
         raster.pNext = 0;
-        raster.depthClampEnable = VK_TRUE;
+        raster.depthClampEnable = VK_FALSE;
         raster.lineWidth = 1.0f;
         raster.cullMode = VK_CULL_MODE_BACK_BIT;
         raster.frontFace = VK_FRONT_FACE_CLOCKWISE;
@@ -179,7 +180,7 @@ namespace FastGFX::Resource {
         VkPipelineMultisampleStateCreateInfo msaa{};
         msaa.sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
         msaa.pNext = 0;
-        msaa.rasterizationSamples = VK_SAMPLE_COUNT_4_BIT;
+        msaa.rasterizationSamples = VK_SAMPLE_COUNT_1_BIT;
         msaa.sampleShadingEnable = VK_FALSE;
 
         VkPipelineColorBlendAttachmentState blending{};

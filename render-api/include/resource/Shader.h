@@ -16,6 +16,7 @@ namespace FastGFX::Resource
         VkPipeline renderPipelineObject = VK_NULL_HANDLE;
     public:
         Shader(Core::Renderer renderer);
+        inline Shader() {}
         Shader useInternalShader(std::string shader_name);
         Shader useExternalVS(std::string glsl_file);
         Shader useExternalFS(std::string glsl_file);
