@@ -14,14 +14,20 @@ namespace FastGFX {
     namespace Resource {
         class Shader;
         class VertexBuffer;
+        class IndexBuffer;
     }
 }
 
 
 namespace FastGFX::Core
 {
-    class Renderer
+    struct Renderer
     {
+    friend ApplicationModel;
+    friend Resource::VertexBuffer;
+    friend Resource::IndexBuffer;
+    friend Resource::Shader;
+
     private:
         vkb::Instance instance;
         vkb::PhysicalDevice physicalDevice;
@@ -48,9 +54,7 @@ namespace FastGFX::Core
         VkRenderPass engineRenderPass;
         VkClearValue clearColor = {};
         VkCommandBuffer commandBuffer;
-        friend ApplicationModel;
-        friend Resource::VertexBuffer;
-        friend Resource::Shader;
+
         void create(GLFWwindow* window);
         void setFrame();
         void startDrawRecord();
