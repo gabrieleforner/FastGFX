@@ -63,6 +63,8 @@ namespace FastGFX::Core
 
     public:
         void clearBG(float r, float g, float b, float a);
-
+        Renderer() = default;
+        Renderer(const Renderer&) = delete;
+        //void operator=(const Renderer&) = delete;
     };
 }

@@ -11,10 +11,10 @@ namespace FastGFX::Util
 	{
 	public:
 		virtual ~Scene() = default;
-		virtual void onSceneLoad(Renderer renderer) = 0;
-		virtual void onSceneUpdate(Renderer renderer) = 0;
-		virtual void onSceneDraw(Renderer renderer) = 0;
-		virtual void onSceneExit(Renderer renderer) = 0;
+		virtual void onSceneLoad(Renderer& renderer) = 0;
+		virtual void onSceneUpdate(Renderer& renderer) = 0;
+		virtual void onSceneDraw(Renderer& renderer) = 0;
+		virtual void onSceneExit(Renderer& renderer) = 0;
 	};
 
 	class SceneManager
