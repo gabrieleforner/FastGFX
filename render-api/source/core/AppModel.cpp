@@ -33,7 +33,7 @@ namespace FastGFX::Core
 			renderer.endDrawRecord();
 			glfwPollEvents();
 		}
-
+		vkDeviceWaitIdle(renderer.engineDevice);
 		scene_manager.cleanup();
 		renderer.destroy();
 		glfwDestroyWindow(window);
