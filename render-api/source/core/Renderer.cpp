@@ -266,7 +266,6 @@ namespace FastGFX::Core
     }
     void Renderer::destroy()
     {
-        vkDeviceWaitIdle(this->engineDevice);
         vkWaitForFences(device, 1, &inFlightFence, VK_TRUE, UINT64_MAX);
         vkDestroySemaphore(device, imageAvailableSemaphore, nullptr);
         vkDestroySemaphore(device, renderFinishedSemaphore, nullptr);

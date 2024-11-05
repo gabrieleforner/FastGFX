@@ -12,7 +12,7 @@ struct EngineShader
     std::string fsFile;
 };
 std::vector<EngineShader> engineShaders = {
-    {"rgba_default", "../engine_shaders/rgba_vert.spv", "../engine_shaders/rgba_frag.spv"}
+    {"rgba_default", "shaders/rgba_vs.spv", "shaders/rgba_fs.spv" }
 };
 
 static std::vector<char> readFile(std::string file) {

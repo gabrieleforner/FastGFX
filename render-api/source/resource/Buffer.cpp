@@ -104,7 +104,7 @@ namespace FastGFX::Resource
     }
     void IndexBuffer::Bind() {
         vkCmdBindIndexBuffer(this->renderer->commandBuffer, this->indexBufferObject, 0, VK_INDEX_TYPE_UINT16);
-        //vkCmdDrawIndexed(this->renderer->commandBuffer, size, 1, 0, 0, 0);
+        vkCmdDrawIndexed(this->renderer->commandBuffer, size, 1, 0, 0, 0);
     }
     void IndexBuffer::Destroy() {
         vkDestroyBuffer(this->renderer->engineDevice, this->indexBufferObject, nullptr);
