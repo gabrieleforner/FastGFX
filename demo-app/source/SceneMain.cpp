@@ -10,11 +10,11 @@ ObjectManager objectManager;
 Object objects[1];
 
 
-void SceneMain::onSceneLoad(Renderer renderer) {
+void SceneMain::onSceneLoad(Renderer& renderer) {
 	objects[0] = objectManager.CreatePrimitive(objectManager.Primitive_Hexagon);
 }
 
-void SceneMain::onSceneUpdate(Renderer renderer) {
+void SceneMain::onSceneUpdate(Renderer& renderer) {
 
 	buffer = VertexBuffer(renderer, objects[0].mesh.vertices);
 	indexBuffer = IndexBuffer(renderer, objects[0].mesh.indices);
@@ -22,14 +22,14 @@ void SceneMain::onSceneUpdate(Renderer renderer) {
 }
 
 
-void SceneMain::onSceneDraw(Renderer renderer) {
+void SceneMain::onSceneDraw(Renderer& renderer) {
 	renderer.clearBG(0.0f, 0.0f, 0.0f, 1.0f);
 	buffer.Bind();
 	shader.Bind();
 	indexBuffer.Bind();
 }
 
-void SceneMain::onSceneExit(Renderer renderer) {
+void SceneMain::onSceneExit(Renderer& renderer) {
 	shader.Destroy();
 	indexBuffer.Destroy();
 	buffer.Destroy();
