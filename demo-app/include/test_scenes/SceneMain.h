@@ -1,6 +1,6 @@
 #include <util/Scene.h>
 #include <resource/Buffer.h>
-#include <..\include\ObjectManager.h>
+#include <ObjectManager.h>
 
 using namespace FastGFX::Util;
 using namespace FastGFX::Resource;
